@@ -78,28 +78,9 @@
                                                 });
                                         }
                                 }
-                        }
-                        
-                        function getCalories(name){ // Called when you click on a dish name
-                                $.ajax({
-                                        type: "GET",
-                                        dataType: "json",
-                                        url: "https://api.nutritionix.com/v1_1/search/" + name,
-                                        data: {
-                                                fields: "item_name,item_id,brand_name,nf_calories,nf_total_fat", // some fields may not be needed (decide which ones we really need)
-                                                appId: "9921b233",
-                                                appKey: "4976263e72db8d8c4b4226fa0b0fdbd9"
-                                        },
-                                        success: function(data){
-                                                $("#calories").html(data['hits'][0]['fields']['nf_calories']);
-                                        },
-                                        error: function(data){
-                                                console.log("ERROR: " + data);
-                                        }
-                                });                                     
-                        }
+			}
 
-			function getCalNew(name){ //Should work same as getCalories
+			function getCalories(name){ //Should work same as getCalories
 				$.ajax({
 					type: "GET",
 					dataType: "json",
@@ -109,7 +90,7 @@
 						appKey: "c9e39e2e04df479bb3aecea80e15fb4e"
 					},
 					success: function(data){
-						$("#calories").html(data);
+						$("#calories").html(data["foods"][0]["food"]["food_description"]);
 					},
 					error: function(data){
 						console.log("ERROR: " + data);
